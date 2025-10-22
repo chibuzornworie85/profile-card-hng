@@ -19,6 +19,8 @@
             --text-secondary: #b0b0b0;
             --border: #2a2a3e;
             --radius: 12px;
+            --success: #10b981;
+            --error: #ef4444;
         }
 
         body {
@@ -26,15 +28,60 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
             padding: 20px;
             color: var(--text-primary);
+        }
+
+        nav.main-nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav.main-nav button {
+            padding: 10px 20px;
+            background: var(--accent);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav.main-nav button:hover,
+        nav.main-nav button:focus {
+            background: #0f3460;
+            border-color: var(--text-primary);
+            outline: none;
+        }
+
+        nav.main-nav button:focus-visible {
+            outline: 2px solid var(--text-primary);
+            outline-offset: 2px;
+        }
+
+        nav.main-nav button.active {
+            background: var(--accent);
+            border-color: var(--text-primary);
         }
 
         main {
             width: 100%;
             max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
         }
 
         article[data-testid="test-profile-card"] {
@@ -54,7 +101,6 @@
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
         }
 
-        /* Avatar Section */
         figure {
             display: flex;
             flex-direction: column;
@@ -120,7 +166,7 @@
             flex-wrap: wrap;
         }
 
-        nav a {
+        nav[data-testid="test-user-social-links"] a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -136,15 +182,15 @@
             font-weight: 600;
         }
 
-        nav a:hover,
-        nav a:focus {
+        nav[data-testid="test-user-social-links"] a:hover,
+        nav[data-testid="test-user-social-links"] a:focus {
             background: #0f3460;
             border-color: var(--text-primary);
             transform: translateY(-2px);
             outline: none;
         }
 
-        nav a:focus-visible {
+        nav[data-testid="test-user-social-links"] a:focus-visible {
             outline: 2px solid var(--text-primary);
             outline-offset: 2px;
         }
@@ -193,6 +239,152 @@
             font-weight: bold;
         }
 
+        form {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        form h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        input,
+        textarea {
+            padding: 12px 16px;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .error-message {
+            font-size: 13px;
+            color: var(--error);
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        input.invalid,
+        textarea.invalid {
+            border-color: var(--error);
+        }
+
+        button[type="submit"] {
+            padding: 12px 24px;
+            background: var(--accent);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
+        }
+
+        button[type="submit"]:hover,
+        button[type="submit"]:focus {
+            background: #0f3460;
+            border-color: var(--text-primary);
+            outline: none;
+        }
+
+        button[type="submit"]:focus-visible {
+            outline: 2px solid var(--text-primary);
+            outline-offset: 2px;
+        }
+
+        .success-message {
+            background: var(--success);
+            color: var(--primary);
+            padding: 16px;
+            border-radius: 8px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Added About Me page styles */
+        main[data-testid="test-about-page"] {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        main[data-testid="test-about-page"] h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        main[data-testid="test-about-page"] section {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        main[data-testid="test-about-page"] section:last-child {
+            border-bottom: none;
+        }
+
+        main[data-testid="test-about-page"] h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        main[data-testid="test-about-page"] p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
         @media (max-width: 768px) {
             article[data-testid="test-profile-card"] {
                 grid-template-columns: 1fr;
@@ -216,6 +408,23 @@
             nav[data-testid="test-user-social-links"] {
                 justify-content: center;
             }
+
+            form {
+                padding: 30px 20px;
+            }
+
+            main[data-testid="test-about-page"] {
+                padding: 30px 20px;
+            }
+
+            nav.main-nav {
+                gap: 8px;
+            }
+
+            nav.main-nav button {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -235,32 +444,55 @@
                 width: 120px;
                 height: 120px;
             }
+
+            form {
+                padding: 20px;
+            }
+
+            main[data-testid="test-about-page"] {
+                padding: 20px;
+            }
+
+            form h2 {
+                font-size: 22px;
+            }
+
+            main[data-testid="test-about-page"] h2 {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
 <body>
+    <nav class="main-nav">
+        <button class="nav-btn active" data-page="profile">Profile</button>
+        <button class="nav-btn" data-page="contact">Contact Us</button>
+        <button class="nav-btn" data-page="about">About Me</button>
+    </nav>
+
     <main>
-        <article data-testid="test-profile-card">
-            <figure>
-                <img 
-                    data-testid="test-user-avatar"
-                    src="./user.jpeg" 
-                    alt="Profile picture"
-                >
-                <figcaption>Frontend Developer & Designer</figcaption>
-            </figure>
+        <div id="profile" class="page active">
+            <article data-testid="test-profile-card">
+                <figure>
+                    <img 
+                        data-testid="test-user-avatar"
+                        src="./user.jpeg" 
+                        alt="Profile picture"
+                    >
+                    <figcaption>Frontend Developer & Designer</figcaption>
+                </figure>
 
-            <header>
-                <h2 data-testid="test-user-name">Nworie Godwin</h2>
-                
-                <p data-testid="test-user-bio">
-                    Passionate about building beautiful, accessible web experiences. I specialize in modern frontend development with a focus on performance and user experience. When I'm not coding, you'll find me exploring new design trends or contributing to open-source projects.
-                </p>
+                <header>
+                    <h2 data-testid="test-user-name">Nworie Godwin</h2>
+                    
+                    <p data-testid="test-user-bio">
+                        Passionate about building beautiful, accessible web experiences. I specialize in modern frontend development with a focus on performance and user experience. When I'm not coding, you'll find me exploring new design trends or contributing to open-source projects.
+                    </p>
 
-                <div class="time-container">
-                    <div class="time-label">Current Time (milliseconds)</div>
-                    <div data-testid="test-user-time" id="current-time">0</div>
-                </div>
+                    <div class="time-container">
+                        <div class="time-label">Current Time (milliseconds)</div>
+                        <div data-testid="test-user-time" id="current-time">0</div>
+                    </div>
 
                 <nav data-testid="test-user-social-links">
                     <a href="https://x.com/ChibuzorNworie?t=5hS7icJSFY_is0qDTPQ-jA&s=09" target="_blank" rel="noopener noreferrer" data-testid="test-user-social-twitter" title="Twitter">𝕏</a>
@@ -269,29 +501,128 @@
                     <a href="https://www.instagram.com/gewincodex?igsh=MTlxdDFjbmN0aXd4cA==" target="_blank" rel="noopener noreferrer" data-testid="test-user-social-instagram" title="Instagram"><img src="https://img.freepik.com/free-vector/instagram-vector-social-media-icon-7-june-2021-bangkok-thailand_53876-136728.jpg?semt=ais_hybrid&w=740&q=80" alt="" height="20px"></a>
                 </nav>
 
-                <div class="lists-container">
-                    <section>
-                        <h3>Hobbies</h3>
-                        <ul data-testid="test-user-hobbies">
-                            <li>Web Development</li>
-                            <li>UI/UX Design</li>
-                            <li>Photography</li>
-                            <li>Open Source</li>
-                        </ul>
-                    </section>
+                    <div class="lists-container">
+                        <section>
+                            <h3>Hobbies</h3>
+                            <ul data-testid="test-user-hobbies">
+                                <li>Web Development</li>
+                                <li>UI/UX Design</li>
+                                <li>Photography</li>
+                                <li>Open Source</li>
+                            </ul>
+                        </section>
 
-                    <section>
-                        <h3>Dislikes</h3>
-                        <ul data-testid="test-user-dislikes">
-                            <li>Slow Websites</li>
-                            <li>Poor Accessibility</li>
-                            <li>Outdated Code</li>
-                            <li>Unclear Documentation</li>
-                        </ul>
-                    </section>
+                        <section>
+                            <h3>Dislikes</h3>
+                            <ul data-testid="test-user-dislikes">
+                                <li>Slow Websites</li>
+                                <li>Poor Accessibility</li>
+                                <li>Outdated Code</li>
+                                <li>Unclear Documentation</li>
+                            </ul>
+                        </section>
+                    </div>
+                </header>
+            </article>
+        </div>
+
+        <div id="contact" class="page">
+            <form id="contact-form">
+                <h2>Contact Us</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 12px;">Get in touch with me. I'd love to hear from you!</p>
+
+                <div class="form-group">
+                    <label for="contact-name">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="contact-name" 
+                        data-testid="test-contact-name"
+                        required
+                        aria-describedby="error-name"
+                    >
+                    <div class="error-message" id="error-name" data-testid="test-contact-error-name"></div>
                 </div>
-            </header>
-        </article>
+
+                <div class="form-group">
+                    <label for="contact-email">Email</label>
+                    <input 
+                        type="email" 
+                        id="contact-email" 
+                        data-testid="test-contact-email"
+                        required
+                        aria-describedby="error-email"
+                    >
+                    <div class="error-message" id="error-email" data-testid="test-contact-error-email"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-subject">Subject</label>
+                    <input 
+                        type="text" 
+                        id="contact-subject" 
+                        data-testid="test-contact-subject"
+                        required
+                        aria-describedby="error-subject"
+                    >
+                    <div class="error-message" id="error-subject" data-testid="test-contact-error-subject"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-message">Message</label>
+                    <textarea 
+                        id="contact-message" 
+                        data-testid="test-contact-message"
+                        required
+                        aria-describedby="error-message"
+                    ></textarea>
+                    <div class="error-message" id="error-message" data-testid="test-contact-error-message"></div>
+                </div>
+
+                <button type="submit" data-testid="test-contact-submit">Send Message</button>
+                <div class="success-message" data-testid="test-contact-success">Thank you! Your message has been sent successfully.</div>
+            </form>
+        </div>
+
+        <div id="about" class="page">
+            <main data-testid="test-about-page">
+                <h2>About Me</h2>
+
+                <section data-testid="test-about-bio">
+                    <h3>Bio</h3>
+                    <p>
+                        I'm Nworie Godwin, a passionate frontend developer with 3+ years of experience building beautiful and accessible web applications. I believe in writing clean, maintainable code and creating user experiences that delight. My journey in tech started with a curiosity about how websites work, and it has evolved into a career dedicated to pushing the boundaries of what's possible on the web.
+                    </p>
+                </section>
+
+                <section data-testid="test-about-goals">
+                    <h3>Goals in This Program</h3>
+                    <p>
+                        My primary goals are to deepen my understanding of advanced frontend patterns, master modern tooling and frameworks, and contribute meaningfully to the developer community. I want to build projects that not only showcase technical excellence but also solve real-world problems. Additionally, I aim to mentor junior developers and share knowledge through writing and speaking engagements.
+                    </p>
+                </section>
+
+                <section data-testid="test-about-confidence">
+                    <h3>Areas of Low Confidence</h3>
+                    <p>
+                        While I'm confident in frontend development, I recognize areas where I need growth: backend architecture and database design, DevOps and deployment strategies, and advanced performance optimization techniques. I'm actively working to strengthen these skills through hands-on projects and continuous learning. I also want to improve my skills in team leadership and cross-functional communication.
+                    </p>
+                </section>
+
+                <section data-testid="test-about-future-note">
+                    <h3>Note to Future Self</h3>
+                    <p>
+                        Remember that growth comes from stepping outside your comfort zone. Don't be afraid to fail, because every failure is a lesson. Stay curious, keep learning, and never stop building. The tech industry moves fast, but your dedication to excellence is what will set you apart. Be kind to yourself on difficult days, celebrate small wins, and remember why you fell in love with coding in the first place.
+                    </p>
+                </section>
+
+                <section data-testid="test-about-extra">
+                    <h3>Extra Thoughts</h3>
+                    <p>
+                        I believe that great software is built by great teams. Collaboration, communication, and empathy are just as important as technical skills. I'm excited about the future of web development, especially with emerging technologies like AI, WebAssembly, and edge computing. I'm committed to building a career that makes a positive impact on the world, one line of code at a time.
+                    </p>
+                </section>
+            </main>
+        </div>
     </main>
 
     <script>
@@ -304,13 +635,164 @@
 
         setInterval(updateTime, 100);
 
-        document.querySelectorAll('nav a').forEach(link => {
+        document.querySelectorAll('nav[data-testid="test-user-social-links"] a').forEach(link => {
             link.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     link.click();
                 }
             });
+        });
+
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const pages = document.querySelectorAll('.page');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const pageId = button.getAttribute('data-page');
+                
+                pages.forEach(page => page.classList.remove('active'));
+                
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                
+                document.getElementById(pageId).classList.add('active');
+                
+                button.classList.add('active');
+            });
+        });
+
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.querySelector('.success-message');
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const nameInput = document.getElementById('contact-name');
+            const emailInput = document.getElementById('contact-email');
+            const subjectInput = document.getElementById('contact-subject');
+            const messageInput = document.getElementById('contact-message');
+
+            [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
+                input.classList.remove('invalid');
+                const errorId = `error-${input.id.split('-')[1]}`;
+                const errorElement = document.getElementById(errorId);
+                errorElement.classList.remove('show');
+                errorElement.textContent = '';
+            });
+
+            if (!nameInput.value.trim()) {
+                nameInput.classList.add('invalid');
+                document.getElementById('error-name').textContent = 'Full name is required';
+                document.getElementById('error-name').classList.add('show');
+                isValid = false;
+            }
+
+            if (!emailInput.value.trim()) {
+                emailInput.classList.add('invalid');
+                document.getElementById('error-email').textContent = 'Email is required';
+                document.getElementById('error-email').classList.add('show');
+                isValid = false;
+            } else if (!validateEmail(emailInput.value)) {
+                emailInput.classList.add('invalid');
+                document.getElementById('error-email').textContent = 'Please enter a valid email (e.g., name@example.com)';
+                document.getElementById('error-email').classList.add('show');
+                isValid = false;
+            }
+
+            if (!subjectInput.value.trim()) {
+                subjectInput.classList.add('invalid');
+                document.getElementById('error-subject').textContent = 'Subject is required';
+                document.getElementById('error-subject').classList.add('show');
+                isValid = false;
+            }
+
+            if (!messageInput.value.trim()) {
+                messageInput.classList.add('invalid');
+                document.getElementById('error-message').textContent = 'Message is required';
+                document.getElementById('error-message').classList.add('show');
+                isValid = false;
+            } else if (messageInput.value.trim().length < 10) {
+                messageInput.classList.add('invalid');
+                document.getElementById('error-message').textContent = 'Message must be at least 10 characters';
+                document.getElementById('error-message').classList.add('show');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                successMessage.classList.add('show');
+                
+                contactForm.reset();
+                
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+            }
+        });
+
+        document.getElementById('contact-name').addEventListener('blur', () => {
+            const nameInput = document.getElementById('contact-name');
+            if (!nameInput.value.trim()) {
+                nameInput.classList.add('invalid');
+                document.getElementById('error-name').textContent = 'Full name is required';
+                document.getElementById('error-name').classList.add('show');
+            } else {
+                nameInput.classList.remove('invalid');
+                document.getElementById('error-name').classList.remove('show');
+            }
+        });
+
+        document.getElementById('contact-email').addEventListener('blur', () => {
+            const emailInput = document.getElementById('contact-email');
+            if (!emailInput.value.trim()) {
+                emailInput.classList.add('invalid');
+                document.getElementById('error-email').textContent = 'Email is required';
+                document.getElementById('error-email').classList.add('show');
+            } else if (!validateEmail(emailInput.value)) {
+                emailInput.classList.add('invalid');
+                document.getElementById('error-email').textContent = 'Please enter a valid email (e.g., name@example.com)';
+                document.getElementById('error-email').classList.add('show');
+            } else {
+                emailInput.classList.remove('invalid');
+                document.getElementById('error-email').classList.remove('show');
+            }
+        });
+
+        document.getElementById('contact-subject').addEventListener('blur', () => {
+            const subjectInput = document.getElementById('contact-subject');
+            if (!subjectInput.value.trim()) {
+                subjectInput.classList.add('invalid');
+                document.getElementById('error-subject').textContent = 'Subject is required';
+                document.getElementById('error-subject').classList.add('show');
+            } else {
+                subjectInput.classList.remove('invalid');
+                document.getElementById('error-subject').classList.remove('show');
+            }
+        });
+
+        document.getElementById('contact-message').addEventListener('blur', () => {
+            const messageInput = document.getElementById('contact-message');
+            if (!messageInput.value.trim()) {
+                messageInput.classList.add('invalid');
+                document.getElementById('error-message').textContent = 'Message is required';
+                document.getElementById('error-message').classList.add('show');
+            } else if (messageInput.value.trim().length < 10) {
+                messageInput.classList.add('invalid');
+                document.getElementById('error-message').textContent = 'Message must be at least 10 characters';
+                document.getElementById('error-message').classList.add('show');
+            } else {
+                messageInput.classList.remove('invalid');
+                document.getElementById('error-message').classList.remove('show');
+            }
         });
     </script>
 </body>
